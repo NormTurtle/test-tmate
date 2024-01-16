@@ -16,14 +16,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-					lower=1
-					upper=5
-					echo "lower bound $lower; upper bound $upper"
-					num_commits=$(awk "BEGIN{srand();print int(rand()*($upper-$lower))+$lower }")
-					git checkout -b $num_commits
-					for c in $(seq 1 $num_commits)
-					do
-    			# Generate empty commits
+	#lower=1
+	#upper=5
+		echo "lower bound $lower; upper bound $upper"
+		num_commits=$(awk "BEGIN{srand();print int(rand()*(6-2))+2 }")
+		git checkout -b $num_commits
+		for c in $(seq 1 $num_commits)
+		do
+    		# Generate empty commits
 			    git commit --allow-empty -m "$c"
 					done
 					git pull --verbose --rebase
