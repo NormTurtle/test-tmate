@@ -16,10 +16,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          git checkout -b test
-          git pull origin main --verbose
-          git commit --allow-empty -m "didiai"
-          gh pr create --title "afd" --body "adjlfaskldf" --fill --base main 
+					lower=1
+					upper=5
+					echo "lower bound $lower; upper bound $upper"
+					num_commits=$(awk "BEGIN{srand();print int(rand()*($upper-$lower))+$lower }")
+					git checkout -b $num_commits
+					for c in $(seq 1 $num_commits)
+					do
+    			# Generate empty commits
+			    git commit --allow-empty -m "$c"
+					done
+					git pull --verbose --rebase
+					git push --set-upstream origin $num_commits
+					gh pr create  --fill --base main 
+		 
+          #git config user.name "GitHub Actions Bot"
+          #git config user.email "<>"
+          #git checkout -b test
+          #git pull origin main --verbose
+          #git commit --allow-empty -m "didiai"
+          #gh pr create --title "afd" --body "adjlfaskldf" --fill --base main 
           
