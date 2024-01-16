@@ -1,0 +1,25 @@
+name: dieafdasf
+on:
+  schedule:
+    # Everyday at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  run_run_rin_die_run_run:
+    name: Get latest adfadf
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Commit changes
+        id: commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git checkout -b test
+          git pull origin main --verbose
+          git commit --allow-empty -m "didiai"
+          gh pr create --title "afd" --body "adjlfaskldf" --fill --base main 
+          
